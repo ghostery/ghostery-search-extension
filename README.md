@@ -1,0 +1,1 @@
+# ghostery-search-extension
