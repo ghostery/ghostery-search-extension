@@ -1,0 +1,20 @@
+{
+  "name": "ghostery-search-extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:firefox": "web-ext run --source-dir ./src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghostery/ghostery-search-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ghostery/ghostery-search-extension/issues"
+  },
+  "homepage": "https://github.com/ghostery/ghostery-search-extension#readme",
+  "devDependencies": {
+    "web-ext": "^5.2.0"
+  }
+}

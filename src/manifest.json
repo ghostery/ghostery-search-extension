@@ -1,0 +1,27 @@
+{
+  "version": "2",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "search@ghostery.com"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "manifest_version": 2,
+  "name": "Ghostery Search",
+  "permissions": ["cookies", "https://www.ghostery.com/"],
+  "chrome_settings_overrides" : {
+    "homepage": "https://ghostery.github.io/user-agent-desktop/",
+    "search_provider": {
+      "name": "Ghostery Search",
+      "search_url": "https://ui.customsearch.ai/hosted-page?customconfig=b6879739-efa8-4d5b-af72-19dcde4d8654&version=latest&market=en-US&q={searchTerms}",
+      "keyword": "ghostery",
+      "favicon_url": "https://ghostery.github.io/user-agent-desktop/img/favicon-32x32.png",
+      "is_default": true
+    }
+  },
+  "chrome_url_overrides" : {
+    "newtab": "/newtab.html"
+  }
+}
