@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "web-ext build --source-dir ./src/",
     "start:firefox": "web-ext run --source-dir ./src/"
   },
   "repository": {
