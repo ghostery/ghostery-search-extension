@@ -1,28 +1,3 @@
-// let API_BASE_URL = 'http://localhost:5000';
-let API_BASE_URL = 'https://ghosterysearch.com';
-
-class TokenPool {
-  constructor() {
-    this.pool = [];
-  }
-
-  async fetchTokens() {
-    const response = await fetch(`${API_BASE_URL}/tokens/new`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${AccessToken.get()}`,
-        'Content-Type': 'application/json'
-      }
-    });
-    if (response.ok) {
-      let json = await response.json();
-      this.pool.push(...json.tokens);
-    } else {
-      console.error("Wrong access token");
-    }
-  }
-}
-
 const tokenPool = new TokenPool();
 
 class AccessToken {
@@ -33,7 +8,7 @@ class AccessToken {
       console.warn("ACCESS_TOKEN updated");
     }
     AccessToken.TOKEN = value;
-    tokenPool.fetchTokens();
+    tokenPool.generateTokens();
   }
 
   static get() {

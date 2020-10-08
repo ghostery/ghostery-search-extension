@@ -6,7 +6,11 @@
     }
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "token-pool.js",
+      "sjcl.js",
+      "background.js"
+    ]
   },
   "manifest_version": 2,
   "name": "Ghostery Search",
