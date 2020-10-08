@@ -17,6 +17,7 @@
   "permissions": [
     "cookies",
     "webRequest",
+    "webRequestBlocking",
     "https://www.ghostery.com/*",
     "https://ghosterysearch.com/*",
     "http://localhost/*"

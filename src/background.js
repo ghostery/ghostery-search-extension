@@ -62,6 +62,25 @@ const lookForAccessToken = async () => {
 
 async function start() {
   lookForAccessToken();
+
+  browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
+    const { requestHeaders } = details;
+    const token = await tokenPool.getToken();
+    if (!token) {
+      return;
+    }
+    requestHeaders.push({
+      name: "SERP-token",
+      value: token.token,
+    });
+    requestHeaders.push({
+      name: "SERP-sig",
+      value: token.sig,
+    });
+    return {
+      requestHeaders,
+    };
+  }, { urls: ["https://ghosterysearch.com/search*"]}, ["blocking", "requestHeaders"]);
 }
 
 start();

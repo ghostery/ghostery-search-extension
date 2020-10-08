@@ -13,7 +13,16 @@ function base64ToBn(b64) {
 
 class TokenPool {
   constructor() {
-    this.acquiredTokens = [];
+    this.tokens = [];
+  }
+
+  async getToken() {
+    if (this.tokens.length === 0) {
+      await this.generateTokens();
+    } else if (this.tokens.length < 6) {
+      this.generateTokens();
+    }
+    return this.tokens.pop();
   }
 
   async getModulus() {
@@ -33,6 +42,10 @@ class TokenPool {
   }
 
   async generateTokens() {
+    const accessToken = AccessToken.get();
+    if (!accessToken) {
+      return;
+    }
     const mod = await this.getModulus();
     const blindTokens = [];
     const pretokens = [];
@@ -46,7 +59,7 @@ class TokenPool {
     const response = await fetch(`${API_BASE_URL}/tokens/new`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${AccessToken.get()}`,
+        'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -72,7 +85,7 @@ class TokenPool {
         }
       });
       console.warn(`Adding ${res.length} tokens to acquired pool`);
-      this.acquiredTokens.push(...res);
+      this.tokens.push(...res);
     } else {
       console.error("Wrong access token");
     }
