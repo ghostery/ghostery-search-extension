@@ -14,7 +14,8 @@
     "cookies",
     "webRequest",
     "https://www.ghostery.com/*",
-    "https://ghosterysearch.com/*"
+    "https://ghosterysearch.com/*",
+    "http://localhost/*"
   ],
   "chrome_settings_overrides" : {
     "search_provider": {

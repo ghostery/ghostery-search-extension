@@ -1,3 +1,30 @@
+// let API_BASE_URL = 'http://localhost:5000';
+let API_BASE_URL = 'https://ghosterysearch.com';
+
+class TokenPool {
+  constructor() {
+    this.pool = [];
+  }
+
+  async fetchTokens() {
+    const response = await fetch(`${API_BASE_URL}/tokens/new`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${AccessToken.get()}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    if (response.ok) {
+      let json = await response.json();
+      this.pool.push(...json.tokens);
+    } else {
+      console.error("Wrong access token");
+    }
+  }
+}
+
+const tokenPool = new TokenPool();
+
 class AccessToken {
   static set(value) {
     if (!AccessToken.TOKEN) {
@@ -6,11 +33,11 @@ class AccessToken {
       console.warn("ACCESS_TOKEN updated");
     }
     AccessToken.TOKEN = value;
-    console.warn(parseJwt(value))
+    tokenPool.fetchTokens();
   }
 
   static get() {
-    return ACCESS_TOKEN.TOKEN;
+    return AccessToken.TOKEN;
   }
 
   static destroy() {
@@ -23,7 +50,7 @@ function parseJwt(token) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
   var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
   }).join(''));
 
   return JSON.parse(jsonPayload);
