@@ -10,7 +10,12 @@
   },
   "manifest_version": 2,
   "name": "Ghostery Search",
-  "permissions": ["cookies", "https://www.ghostery.com/*", "https://ghosterysearch.com/*"],
+  "permissions": [
+    "cookies",
+    "webRequest",
+    "https://www.ghostery.com/*",
+    "https://ghosterysearch.com/*"
+  ],
   "chrome_settings_overrides" : {
     "search_provider": {
       "name": "Ghostery Search",

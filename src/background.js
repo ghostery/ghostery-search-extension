@@ -1,8 +1,37 @@
-let ACCESS_TOKEN = null;
+class AccessToken {
+  static set(value) {
+    if (!AccessToken.TOKEN) {
+      console.warn("ACCESS_TOKEN created");
+    } else {
+      console.warn("ACCESS_TOKEN updated");
+    }
+    AccessToken.TOKEN = value;
+    console.warn(parseJwt(value))
+  }
+
+  static get() {
+    return ACCESS_TOKEN.TOKEN;
+  }
+
+  static destroy() {
+    console.warn("ACCESS_TOKEN removed")
+    AccessToken.TOKEN = null;
+  }
+}
+
+function parseJwt(token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+};
 
 const cookieListener = (changeInfo) => {
   const { cookie, removed } = changeInfo;
-  console.warn(cookie);
+
   if (cookie.domain !== ".ghostery.com") {
     return;
   }
@@ -12,12 +41,10 @@ const cookieListener = (changeInfo) => {
   }
 
   if (removed) {
-    console.warn("ACCESS_TOKEN removed")
-    ACCESS_TOKEN = null;
+    AccessToken.destroy();
   }
 
-  console.warn("ACCESS_TOKEN updated");
-  ACCESS_TOKEN = cookie.value;
+  AccessToken.set(cookie.value);
 }
 
 const lookForAccessToken = async () => {
@@ -27,8 +54,7 @@ const lookForAccessToken = async () => {
     name: "access_token",
   });
   if (cookie) {
-    console.warn("ACCESS_TOKEN found");
-    ACCESS_TOKEN = cookie.value;
+    AccessToken.set(cookie.value);
   };
 }
 
