@@ -1,6 +1,3 @@
-// let API_BASE_URL = 'http://localhost:5000';
-let API_BASE_URL = 'https://ghosterysearch.com';
-
 const PUBLIC_EXP = 65537;
 
 function bnToBase64(bn) {

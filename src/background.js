@@ -80,7 +80,7 @@ async function start() {
     return {
       requestHeaders,
     };
-  }, { urls: ["https://ghosterysearch.com/search*"]}, ["blocking", "requestHeaders"]);
+  }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
 }
 
 start();
