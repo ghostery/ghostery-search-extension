@@ -33,5 +33,15 @@
       "favicon_url": "https://ghosterysearch.com/img/favicon-32x32.png",
       "is_default": true
     }
+  },
+  "experiment_apis": {
+    "ghostery": {
+      "schema": "experiment_apis/ghostery_schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["ghostery"]],
+        "script": "experiment_apis/ghostery_parent.js"
+      }
+    }
   }
 }
