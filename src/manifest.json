@@ -17,7 +17,7 @@
   "manifest_version": 2,
   "name": "Ghostery Search",
   "permissions": [
-    "tabs",
+    "storage",
     "cookies",
     "webRequest",
     "webRequestBlocking",

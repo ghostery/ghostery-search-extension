@@ -3,11 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   engines.forEach(engine => {
     engine.addEventListener('click', async () => {
       const name = engine.dataset.name;
-      try {
-        await browser.ghostery.setDefaultSearchEngine(name);
-      } catch(e) {
-        console.error(e);
-      }
+      await browser.ghostery.setDefaultSearchEngine(name);
+      const currentTab = await browser.tabs.getCurrent();
+      await browser.storage.local.set({
+        isOnboardingCompleted: true,
+      });
+      await browser.tabs.create({});
+      browser.tabs.remove(currentTab.id);
     });
   });
 });
