@@ -1,0 +1,20 @@
+[{
+  "namespace": "ghostery",
+  "description": "API to change the default search engine",
+  "functions": [
+  {
+    "name": "setDefaultSearchEngine",
+    "type": "function",
+    "description": "Sets a default search engine",
+    "async": true,
+    "parameters": [
+      {
+        "name": "searchEngineName",
+        "type": "string"
+      }
+    ]
+  }
+  ],
+  "events": [
+  ]
+}]

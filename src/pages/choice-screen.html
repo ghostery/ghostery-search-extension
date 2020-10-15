@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Engine Choice</title>
+    <meta charset="UTF-8" />
+    <script src="common.js"></script>
+    <style>
+      @font-face {
+        font-family: Roboto;
+        src: url('../fonts/Roboto-Regular.ttf');
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: Roboto;
+        src: url('../fonts/Roboto-Bold.ttf');
+        font-weight: 700;
+      }
+      @font-face {
+        font-family: Roboto;
+        src: url('../fonts/Roboto-Light.ttf');
+        font-weight: 300;
+      }
+      @font-face {
+        font-family: Roboto;
+        src: url('../fonts/Roboto-Thin.ttf');
+        font-weight: 100;
+      }
+      @font-face {
+        font-family: Roboto;
+        src: url('../fonts/Roboto-Medium.ttf');
+        font-weight: 500;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #4a4a4a;
+        font-family: Roboto;
+      }
+      .header {
+        text-align: left;
+      }
+      .header img {
+        margin: 20px;
+        height: 25px;
+        width: 140px;
+      }
+      .content {
+        margin: 0 auto;
+        display: inline-block;
+        text-align: center;
+      }
+      .content h1 {
+        line-height: 2;
+        font-weight: 500;
+        font-size: 24px;
+        margin: 0;
+      }
+      .content h2 {
+        line-height: 2;
+        font-size: 18px;
+        font-weight: 300;
+        margin: 0;
+      }
+      .engines {
+        width: 840px;
+        margin: 40px auto 0;
+      }
+      @media only screen and (max-width: 840px) {
+        .engines {
+          width: 420px;
+        }
+      }
+      .engine {
+        float: left;
+        display: flex;
+        width: 343px;
+        height: 86px;
+        margin: 10px 15px;
+        border: 1px solid #4a4a4a;
+        padding: 20px;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration: none;
+        color: #4a4a4a;
+      }
+      .engine:hover {
+        border-width: 1px;
+        border-color: #00aef0;
+      }
+      .engine-description {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+      }
+      .engine span {
+        font-size: 14px;
+        line-height: 21px;
+      }
+      .spacer {
+        width: 25px;
+        margin-left: 20px;
+      }
+      .radio {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+      }
+      .radio .radio-on {
+        display: none;
+      }
+      .engine:hover .radio-on {
+        display: inline;
+      }
+      .engine:hover .radio-off {
+        display: none;
+      }
+      .engine-logo {
+        height: 37px;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="header">
+      <img id="logo" src="../assets/GhosteryBrowser.svg" />
+    </section>
+    <section class="content">
+      <h1>Welcome! Choose you default search</h1>
+      <h2>Pick a default search engine for all your searches.</h2>
+      <div class="engines">
+        <a class="engine" data-name="Ghostery Search">
+          <div class="radio">
+            <img class="radio-off" src="../assets/radio-off.png" />
+            <img class="radio-on" src="../assets/radio-on.png" />
+          </div>
+          <div class="engine-description">
+            <img class="engine-logo" src="../assets/GhosterySearch.svg" />
+            <span>Ad-free private search</span>
+            <span>(Recommended)</span>
+          </div>
+          <div class="spacer"></div>
+        </a>
+        <a class="engine" data-name="StartPage">
+          <div class="radio">
+            <img class="radio-off" src="../assets/radio-off.png" />
+            <img class="radio-on" src="../assets/radio-on.png" />
+          </div>
+          <div class="engine-description">
+            <img class="engine-logo" src="../assets/StartPage.svg" />
+            <span>Ad-supported private search</span>
+          </div>
+          <div class="spacer"></div>
+        </a>
+        <a class="engine" data-name="Bing">
+          <div class="radio">
+            <img class="radio-off" src="../assets/radio-off.png" />
+            <img class="radio-on" src="../assets/radio-on.png" />
+          </div>
+          <div class="engine-description">
+            <img class="engine-logo" src="../assets/Bing.svg" />
+            <span>Ad-supported non-private search</span>
+          </div>
+          <div class="spacer"></div>
+        </a>
+        <a class="engine" data-name="Yahoo">
+          <div class="radio">
+            <img class="radio-off" src="../assets/radio-off.png" />
+            <img class="radio-on" src="../assets/radio-on.png" />
+          </div>
+          <div class="engine-description">
+            <img class="engine-logo" src="../assets/Yahoo.svg" />
+            <span>Ad-supported non-private search</span>
+          </div>
+          <div class="spacer"></div>
+        </a>
+      </div>
+    </section>
+  </body>
+</html>
