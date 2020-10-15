@@ -1,6 +1,6 @@
 [{
   "namespace": "ghostery",
-  "description": "API giving overring various low level functionalities",
+  "description": "API to change the default search engine",
   "functions": [
   {
     "name": "setDefaultSearchEngine",
