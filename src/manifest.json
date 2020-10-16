@@ -1,5 +1,5 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.3",
   "browser_specific_settings": {
     "gecko": {
       "id": "search@ghostery.com"
@@ -24,6 +24,12 @@
     "https://www.ghostery.com/*",
     "https://ghosterysearch.com/*",
     "http://localhost/*"
+  ],
+  "icons": {
+    "16": "favicon.ico"
+  },
+  "web_accessible_resources": [
+    "favicon.ico"
   ],
   "chrome_settings_overrides" : {
     "search_provider": {
