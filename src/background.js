@@ -44,6 +44,7 @@ const cookieListener = (changeInfo) => {
 
   if (removed) {
     AccessToken.destroy();
+    return;
   }
 
   AccessToken.set(cookie.value);
