@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "web-ext build --source-dir ./src/",
-    "start:firefox": "web-ext run --source-dir ./src/"
+    "build": "web-ext build",
+    "start": "web-ext run --pref extensions.experiments.enabled=true"
+  },
+  "webExt": {
+    "sourceDir": "./src/",
+    "run": {
+      "firefox": "firefoxdeveloperedition"
+    }
   },
   "repository": {
     "type": "git",
