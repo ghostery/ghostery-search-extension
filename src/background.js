@@ -19,6 +19,13 @@ class AccessToken {
     console.warn("ACCESS_TOKEN removed")
     AccessToken.TOKEN = null;
   }
+
+  static async refresh() {
+    await fetch(`${AUTH_BASE_URL}/refresh_token`, {
+      method: 'POST',
+      credentials: 'include',
+    });
+  }
 }
 
 function parseJwt(token) {
