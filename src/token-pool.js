@@ -84,7 +84,8 @@ class TokenPool {
       console.warn(`Adding ${res.length} tokens to acquired pool`);
       this.tokens.push(...res);
     } else {
-      console.error("Wrong access token");
+      // refresh the access token. This will call generateTokens if the refresh is successful
+      AccessToken.refresh();
     }
   }
 }

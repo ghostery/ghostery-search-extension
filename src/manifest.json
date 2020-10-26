@@ -22,6 +22,7 @@
     "webRequest",
     "webRequestBlocking",
     "https://www.ghostery.com/*",
+    "https://consumerapi.ghostery.com/*",
     "https://ghosterysearch.com/*",
     "http://localhost/*"
   ],
