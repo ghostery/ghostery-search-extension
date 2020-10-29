@@ -14,6 +14,13 @@
       "choice-screen.js"
     ]
   },
+  "content_scripts": [{
+    "matches": [
+      "https://*.ghosterysearch.com/",
+      "http://localhost/*"
+    ],
+    "js": ["content/login-cta.js"]
+  }],
   "manifest_version": 2,
   "name": "Ghostery Search",
   "permissions": [

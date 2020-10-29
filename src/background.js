@@ -105,6 +105,13 @@ async function start() {
       requestHeaders,
     };
   }, { urls: [`${SERP_BASE_URL}/login*`]}, ["blocking", "requestHeaders"]);
+
+  browser.runtime.onMessage.addListener(({ action }) => {
+    if (action === 'getTokenCount') {
+      return Promise.resolve(tokenPool.tokens.length);
+    }
+    return false;
+  })
 }
 
 start();
