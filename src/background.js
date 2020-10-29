@@ -69,6 +69,7 @@ const lookForAccessToken = async () => {
 }
 
 async function start() {
+  await setupEndpoints;
   lookForAccessToken();
 
   browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
