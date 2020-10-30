@@ -46,7 +46,7 @@
     "search_provider": {
       "name": "Ghostery Search",
       "search_url": "https://ghosterysearch.com/search?q={searchTerms}",
-      "keyword": "Ghostery",
+      "keyword": "@ghostery",
       "favicon_url": "https://ghosterysearch.com/img/favicon-32x32.png",
       "is_default": true,
       "suggest_url": "https://ghosterysearch.com/suggest",
