@@ -25,8 +25,14 @@ async function selectSearchEngine(name) {
   await browser.storage.local.set({
     isOnboardingCompleted: true,
   });
-  await browser.tabs.create({});
-  browser.tabs.remove(currentTab.id);
+  if (name === browser.runtime.getManifest()["chrome_settings_overrides"]["search_provider"].name) {
+    browser.tabs.update(currentTab.id, {
+      url: "https://ghosterysearch.com/account",
+    });
+  } else {
+    await browser.tabs.create({});
+    browser.tabs.remove(currentTab.id);
+  }
 }
 
 function closeModals() {
