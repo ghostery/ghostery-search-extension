@@ -1,14 +1,18 @@
 let DEBUG = false;
 const STAGING_BASE_URL = 'https://staging.ghosterysearch.com';
 const PROD_BASE_URL = 'https://ghosterysearch.com';
+const STAGING_AUTH_DOMAIN = '.ghosterystage.com';
+const PROD_AUTH_DOMAIN = '.ghostery.com';
 let API_BASE_URL = DEBUG ? 'http://localhost:5000' : PROD_BASE_URL;
 let SERP_BASE_URL = DEBUG ? 'http://localhost' : PROD_BASE_URL;
-let AUTH_BASE_URL = 'https://consumerapi.ghostery.com/api/v2';
+let AUTH_DOMAIN = PROD_AUTH_DOMAIN;
+let AUTH_BASE_URL = `https://consumerapi${PROD_AUTH_DOMAIN}/api/v2`;
 
 const setupEndpoints = (async function() {
   const USE_STAGING = (await browser.storage.local.get('USE_STAGING'))['USE_STAGING'];
   if (USE_STAGING) {
-    AUTH_BASE_URL = AUTH_BASE_URL.replace('.ghostery.com', '.ghosterystage.com');
+    AUTH_DOMAIN = STAGING_AUTH_DOMAIN;
+    AUTH_BASE_URL = AUTH_BASE_URL.replace(PROD_AUTH_DOMAIN, STAGING_AUTH_DOMAIN);
     console.log(`USING_STAGING: AUTH_BASE_URL=${AUTH_BASE_URL}`)
     // only switch to staging search if DEBUG is disabled
     if (!DEBUG) {
