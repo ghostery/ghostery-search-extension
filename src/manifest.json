@@ -30,7 +30,10 @@
     "webRequestBlocking",
     "https://www.ghostery.com/*",
     "https://consumerapi.ghostery.com/*",
+    "https://www.ghosterystage.com/*",
+    "https://consumerapi.ghosterystage.com/*",
     "https://ghosterysearch.com/*",
+    "https://staging.ghosterysearch.com/*",
     "http://localhost/*"
   ],
   "icons": {

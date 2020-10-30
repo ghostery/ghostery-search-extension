@@ -40,8 +40,7 @@ function parseJwt(token) {
 
 const cookieListener = (changeInfo) => {
   const { cookie, removed } = changeInfo;
-
-  if (cookie.domain !== ".ghostery.com") {
+  if (cookie.domain !== AUTH_DOMAIN) {
     return;
   }
 
@@ -60,7 +59,7 @@ const cookieListener = (changeInfo) => {
 const lookForAccessToken = async () => {
   browser.cookies.onChanged.addListener(cookieListener);
   const cookie = await browser.cookies.get({
-    url: "https://www.ghostery.com/",
+    url: `https://www${AUTH_DOMAIN}/`,
     name: "access_token",
   });
   if (cookie) {
