@@ -90,21 +90,6 @@ async function start() {
     };
   }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
 
-  browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
-    const { requestHeaders } = details;
-    const accessToken = AccessToken.get();
-    if (!accessToken) {
-      return;
-    }
-    requestHeaders.push({
-      name: "Authorization",
-      value: `Bearer ${accessToken}`,
-    });
-    return {
-      requestHeaders,
-    };
-  }, { urls: [`${SERP_BASE_URL}/login*`]}, ["blocking", "requestHeaders"]);
-
   browser.runtime.onMessage.addListener(({ action }) => {
     if (action === 'getTokenCount') {
       return Promise.resolve(tokenPool.tokens.length);
