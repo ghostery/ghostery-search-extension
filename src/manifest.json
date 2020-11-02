@@ -19,7 +19,7 @@
       "https://*.ghosterysearch.com/",
       "http://localhost/*"
     ],
-    "js": ["content/login-cta.js"]
+    "js": ["content/login-cta.js", "content/top-sites.js"]
   }],
   "manifest_version": 2,
   "name": "Ghostery Search",
@@ -28,6 +28,7 @@
     "cookies",
     "webRequest",
     "webRequestBlocking",
+    "topSites",
     "https://www.ghostery.com/*",
     "https://consumerapi.ghostery.com/*",
     "https://www.ghosterystage.com/*",

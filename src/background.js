@@ -90,9 +90,16 @@ async function start() {
     };
   }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
 
-  browser.runtime.onMessage.addListener(({ action }) => {
+
+  browser.runtime.onMessage.addListener(async ({ action }) => {
     if (action === 'getTokenCount') {
       return Promise.resolve(tokenPool.tokens.length);
+    }
+    if (action === 'getTopSites') {
+      return (await browser.topSites.get({
+        newtab: true,
+        includeFavicon: true,
+      })).filter(site => site.type === 'url');
     }
     return false;
   })
