@@ -89,31 +89,36 @@ async function start() {
       requestHeaders,
     };
   }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
-
-
-  browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
-    if (action === 'getTokenCount') {
-      return Promise.resolve(tokenPool.tokens.length);
-    }
-    if (action === 'getTopSites') {
-      return (await browser.topSites.get({
-        newtab: true,
-        includeFavicon: true,
-      })).filter(site => site.type === 'url');
-    }
-    if (action === 'getSearchEngines') {
-      return browser.search.get();
-    }
-    if (action === 'search') {
-      const { query, engine } = args[0];
-      return browser.search.search({
-        query,
-        engine,
-        tabId: tab.id,
-      });
-    }
-    return false;
-  })
 }
+
+browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
+  if (action === 'getTokenCount') {
+    return Promise.resolve(tokenPool.tokens.length);
+  }
+
+  if (action === 'getTopSites') {
+    return (await browser.topSites.get({
+      newtab: true,
+      includeFavicon: true,
+    })).filter(site => site.type === 'url');
+  }
+
+  if (action === 'getSearchEngines') {
+    return (await browser.search.get()).filter(
+      engine => engine.name !== browser.runtime.getManifest()["chrome_settings_overrides"]["search_provider"].name
+    );
+  }
+
+  if (action === 'search') {
+    const { query, engine } = args[0];
+    return browser.search.search({
+      query,
+      engine,
+      tabId: tab.id,
+    });
+  }
+
+  return false;
+});
 
 start();
