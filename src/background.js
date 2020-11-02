@@ -91,7 +91,7 @@ async function start() {
   }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
 
 
-  browser.runtime.onMessage.addListener(async ({ action }) => {
+  browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
     if (action === 'getTokenCount') {
       return Promise.resolve(tokenPool.tokens.length);
     }
@@ -100,6 +100,17 @@ async function start() {
         newtab: true,
         includeFavicon: true,
       })).filter(site => site.type === 'url');
+    }
+    if (action === 'getSearchEngines') {
+      return browser.search.get();
+    }
+    if (action === 'search') {
+      const { query, engine } = args[0];
+      return browser.search.search({
+        query,
+        engine,
+        tabId: tab.id,
+      });
     }
     return false;
   })
