@@ -14,7 +14,6 @@
     const topSites = await browser.runtime.sendMessage({
       action: 'getTopSites'
     });
-    console.warn(topSites)
 
     const $topSitesWrapper = document.createElement('div');
     $topSitesWrapper.classList.add('topsites');
