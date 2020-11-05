@@ -11,12 +11,7 @@ class AccessToken {
     tokenPool.generateTokens();
   }
 
-  static async get() {
-    const token = AccessToken.TOKEN;
-    if (token) {
-      return token;
-    }
-    await AccessToken.refresh();
+  static get() {
     return AccessToken.TOKEN;
   }
 
@@ -55,6 +50,9 @@ const cookieListener = (changeInfo) => {
 
   if (removed) {
     AccessToken.destroy();
+    // try to refresh the token incase remove was caused by
+    // token expiring
+    AccessToken.refresh();
     return;
   }
 
@@ -69,6 +67,10 @@ const lookForAccessToken = async () => {
   });
   if (cookie) {
     AccessToken.set(cookie.value);
+  } else {
+    // if token is not found on startup try to refresh
+    // as it can just be expired
+    AccessToken.refresh();
   };
 }
 

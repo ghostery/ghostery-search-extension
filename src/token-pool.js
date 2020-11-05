@@ -39,7 +39,7 @@ class TokenPool {
   }
 
   async generateTokens() {
-    const accessToken = await AccessToken.get();
+    const accessToken = AccessToken.get();
     if (!accessToken) {
       return;
     }
@@ -53,17 +53,17 @@ class TokenPool {
       pretokens.push({ token, blindFactor });
     }
 
-    let response = await this._fetchNewTokens(accessToken, blindTokens);
-    if (response.status === 401) {
-      // try to refresh token and try again if authorization failed
-      // as the token technically could have expired by the time the request
-      // arives
-      const accessToken = await AccessToken.get();
-      if (!accessToken) {
-        return;
-      }
-      response = await this._fetchNewTokens(accessToken, blindTokens);
-    }
+    const response = await fetch(`${API_BASE_URL}/tokens/new`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        blindTokens,
+      }),
+    });
+
     if (response.ok) {
       const { tokens } = await response.json();
       const res = [];
@@ -85,18 +85,5 @@ class TokenPool {
       console.warn(`Adding ${res.length} tokens to acquired pool`);
       this.tokens.push(...res);
     }
-  }
-
-  async _fetchNewTokens(accessToken, blindTokens) {
-    return fetch(`${API_BASE_URL}/tokens/new`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        blindTokens,
-      }),
-    });
   }
 }
