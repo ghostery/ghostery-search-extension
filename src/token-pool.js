@@ -63,7 +63,6 @@ class TokenPool {
         blindTokens,
       }),
     });
-
     if (response.ok) {
       const { tokens } = await response.json();
       const res = [];
