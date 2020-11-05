@@ -46,6 +46,10 @@
       const $title = document.createElement('span');
       $title.innerText = site.title;
       $title.style.marginTop = '5px';
+      $title.style.maxWidth = '70px';
+      $title.style.whiteSpace = 'nowrap';
+      $title.style.overflow = 'hidden';
+      $title.style.textOverflow = 'clip';
       $site.appendChild($title);
 
       $topSitesWrapper.appendChild($site);
