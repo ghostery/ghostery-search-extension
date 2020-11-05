@@ -1,4 +1,5 @@
 const PUBLIC_EXP = 65537;
+const MIN_TOKENS = 6;
 
 function bnToBase64(bn) {
   return sjcl.codec.base64.fromBits(bn.toBits());
@@ -16,7 +17,7 @@ class TokenPool {
   async getToken() {
     if (this.tokens.length === 0) {
       await this.generateTokens();
-    } else if (this.tokens.length < 6) {
+    } else if (this.tokens.length < MIN_TOKENS) {
       this.generateTokens();
     }
     return this.tokens.pop();
@@ -39,6 +40,11 @@ class TokenPool {
   }
 
   async generateTokens() {
+    // avoid endless growth of the token pool
+    if (this.tokens.length >= MIN_TOKENS) {
+      return;
+    }
+
     const accessToken = AccessToken.get();
     if (!accessToken) {
       return;
@@ -83,7 +89,7 @@ class TokenPool {
       });
       console.warn(`Adding ${res.length} tokens to acquired pool`);
       this.tokens.push(...res);
-    } else if (response.status === 401){
+    } else if (response.status === 401) {
       // refresh the access token. This will call generateTokens if the refresh is successful
       AccessToken.refresh();
     }
