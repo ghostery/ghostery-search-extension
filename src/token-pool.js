@@ -40,7 +40,7 @@ class TokenPool {
   }
 
   async generateTokens() {
-    // avoid exponential growth of the token pool
+    // avoid endless growth of the token pool
     if (this.tokens.length >= MIN_TOKENS) {
       return;
     }
