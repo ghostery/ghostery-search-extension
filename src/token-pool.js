@@ -221,6 +221,9 @@ class TokenPool {
       // as the token technically could have expired by the time the request
       // arives
       const accessToken = await AccessToken.get();
+      if (!accessToken) {
+        return;
+      }
       response = await this._fetchNewTokens(accessToken, blindTokens);
     }
     if (response.ok) {
