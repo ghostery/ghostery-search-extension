@@ -13,11 +13,12 @@ class AccessToken {
   }
 
   static async get() {
-    if (AccessToken.TOKEN) {
-      return AccessToken.TOKEN
+    const token = AccessToken.TOKEN;
+    if (token) {
+      return token;
     }
     await AccessToken.refresh();
-    return AccessToken.TOKEN
+    return AccessToken.TOKEN;
   }
 
   static parse() {
