@@ -11,8 +11,12 @@ class AccessToken {
     tokenPool.generateTokens();
   }
 
-  static get() {
-    return AccessToken.TOKEN;
+  static async get() {
+    if (AccessToken.TOKEN) {
+      return AccessToken.TOKEN
+    }
+    await AccessToken.refresh();
+    return AccessToken.TOKEN
   }
 
   static destroy() {

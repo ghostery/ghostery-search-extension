@@ -39,7 +39,7 @@ class TokenPool {
   }
 
   async generateTokens() {
-    const accessToken = AccessToken.get();
+    const accessToken = await AccessToken.get();
     if (!accessToken) {
       return;
     }
