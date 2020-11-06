@@ -39,7 +39,7 @@ function parseJwt(token) {
 };
 
 const cookieListener = (changeInfo) => {
-  const { cookie, removed } = changeInfo;
+  const { cookie, removed, cause } = changeInfo;
   if (cookie.domain !== AUTH_DOMAIN) {
     return;
   }
@@ -50,9 +50,13 @@ const cookieListener = (changeInfo) => {
 
   if (removed) {
     AccessToken.destroy();
-    // try to refresh the token incase remove was caused by
-    // token expiring
-    AccessToken.refresh();
+
+    if (cause !== "overwrite") {
+      // try to refresh the token incase remove was caused by
+      // token expiring
+      AccessToken.refresh();
+    }
+
     return;
   }
 
