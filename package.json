@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "web-ext build",
-    "start": "web-ext run --pref extensions.experiments.enabled=true"
+    "start": "web-ext run --pref extensions.experiments.enabled=true --pref security.sandbox.content.level=2"
   },
   "webExt": {
     "sourceDir": "./src/",
