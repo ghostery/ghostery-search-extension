@@ -108,10 +108,17 @@ browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
   }
 
   if (action === 'getTopSites') {
+    if (browser.ghostery.getPref('app.update.channel') !== 'release') {
+      return;
+    }
     return (await browser.topSites.get({
       newtab: true,
       includeFavicon: true,
     })).filter(site => site.type === 'url');
+  }
+
+  if (action === 'focusUrlbar') {
+    browser.ghostery.query(args[0]);
   }
 
   if (action === 'getSearchEngines') {

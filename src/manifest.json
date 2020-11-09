@@ -1,5 +1,5 @@
 {
-  "version": "0.1.13",
+  "version": "0.1.14",
   "browser_specific_settings": {
     "gecko": {
       "id": "search@ghostery.com"
@@ -19,7 +19,7 @@
       "https://*.ghosterysearch.com/",
       "http://localhost/*"
     ],
-    "js": ["content/login-cta.js", "content/top-sites.js"]
+    "js": ["content/login-cta.js", "content/top-sites.js", "content/focus-urlbar.js"]
   }, {
     "matches": [
       "https://*.ghosterysearch.com/search*",
@@ -68,6 +68,11 @@
         "scopes": ["addon_parent"],
         "paths": [["ghostery"]],
         "script": "experiment_apis/ghostery_parent.js"
+      },
+      "child": {
+        "scopes": ["addon_child"],
+        "paths": [["ghostery"]],
+        "script": "experiment_apis/ghostery_child.js"
       }
     }
   }
