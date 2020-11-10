@@ -108,7 +108,7 @@ browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
   }
 
   if (action === 'getTopSites') {
-    if (browser.ghostery.getPref('app.update.channel') !== 'release') {
+    if (browser.ghostery.getPref('app.update.channel') === 'release') {
       return;
     }
     return (await browser.topSites.get({
@@ -117,11 +117,10 @@ browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
     })).filter(site => site.type === 'url');
   }
 
-  if (action === 'focusUrlbar') {
-    browser.ghostery.query(args[0]);
-  }
-
   if (action === 'getSearchEngines') {
+    if (browser.ghostery.getPref('app.update.channel') === 'release') {
+      return;
+    }
     return (await browser.search.get()).filter(
       engine => engine.name !== browser.runtime.getManifest()["chrome_settings_overrides"]["search_provider"].name
     );
