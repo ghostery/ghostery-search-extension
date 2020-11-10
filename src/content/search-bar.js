@@ -2,15 +2,15 @@
 
 (async function () {
   function observerSearchInput() {
-    const input$ = document.querySelector('#search-input');
-    input$.addEventListener('input', () => {
+    const form$ = document.querySelector('form');
+    form$.addEventListener('submit', () => {
+      const input$ = document.querySelector('#search-input');
       browser.runtime.sendMessage({
-        action: 'focusUrlbar',
-        args: [
-          input$.value,
-        ],
+        action: 'search',
+        args: [{
+          query: input$.value,
+        }],
       });
-      input$.value = '';
     });
   }
 
