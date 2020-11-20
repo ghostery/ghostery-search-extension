@@ -42,6 +42,16 @@
       "name": "query",
       "optional": true
     }]
+  },
+  {
+    "name": "isDefaultBrowser",
+    "type": "function",
+    "async": true,
+    "description": "Check if this is the OS's default browser",
+    "parameters": [],
+    "returns": {
+      "description": "true if this is the default browser"
+    }
   }
   ],
   "events": [

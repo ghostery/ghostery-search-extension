@@ -11,7 +11,9 @@
       "token-pool.js",
       "sjcl.js",
       "background.js",
-      "choice-screen.js"
+      "choice-screen.js",
+      "metrics.js",
+      "api.js"
     ]
   },
   "content_scripts": [{
