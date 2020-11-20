@@ -3,7 +3,7 @@
 (async function () {
 
   function cleanup() {
-    const $content = document.querySelector('.main-content');
+    const $content = document.querySelector('.other-search-engines');
     const $searchEngines = document.querySelector('.searchengines');
     if ($searchEngines) {
       $content.removeChild($searchEngines);
@@ -12,7 +12,7 @@
 
   async function addSearchEngines() {
     const query = new URLSearchParams(window.location.search).get('q');
-    const $content = document.querySelector('.main-content');
+    const $content = document.querySelector('.other-search-engines');
     const searchEngines = await browser.runtime.sendMessage({
       action: 'getSearchEngines',
     });
