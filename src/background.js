@@ -118,9 +118,6 @@ browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
   }
 
   if (action === 'getSearchEngines') {
-    if (browser.ghostery.getPref('app.update.channel') === 'release') {
-      return;
-    }
     return (await browser.search.get()).filter(
       engine => engine.name !== browser.runtime.getManifest()["chrome_settings_overrides"]["search_provider"].name
     );
