@@ -21,7 +21,7 @@
       "https://*.ghosterysearch.com/",
       "http://localhost/*"
     ],
-    "js": ["content/login-cta.js", "content/top-sites.js", "content/search-bar.js"]
+    "js": ["content/top-sites.js", "content/search-bar.js"]
   }, {
     "matches": [
       "https://*.ghosterysearch.com/search*",
