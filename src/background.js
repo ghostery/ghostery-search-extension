@@ -15,6 +15,19 @@ class AccessToken {
     return AccessToken.TOKEN;
   }
 
+  static parse() {
+    if (!AccessToken.TOKEN) {
+      return {};
+    }
+    const base64Url = AccessToken.TOKEN.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+  }
+
   static destroy() {
     console.warn("ACCESS_TOKEN removed")
     AccessToken.TOKEN = null;
@@ -100,13 +113,35 @@ async function start() {
       requestHeaders,
     };
   }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
+
+  browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
+    const { requestHeaders } = details;
+
+    requestHeaders.push({
+      name: "X-Ghostery-Browser",
+      value: "true",
+    });
+
+    requestHeaders.push({
+      name: "X-Ghostery-Login",
+      value: String(!!AccessToken.TOKEN),
+    });
+
+    if (AccessToken.TOKEN) {
+      const scopes = AccessToken.parse().scopes || [];
+      requestHeaders.push({
+        name: "X-Ghostery-Scopes",
+        value: scopes.join(','),
+      });
+    }
+
+    return {
+      requestHeaders,
+    };
+  }, { urls: [`${SERP_BASE_URL}/*`]}, ["blocking", "requestHeaders"]);
 }
 
 browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
-  if (action === 'getTokenCount') {
-    return Promise.resolve(tokenPool.tokens.length);
-  }
-
   if (action === 'getTopSites') {
     if (browser.ghostery.getPref('app.update.channel') === 'release') {
       return;
