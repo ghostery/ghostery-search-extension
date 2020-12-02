@@ -1,4 +1,4 @@
-let DEBUG = false;
+let DEBUG = true;
 const STAGING_BASE_URL = 'https://staging.ghosterysearch.com';
 const PROD_BASE_URL = 'https://ghosterysearch.com';
 const STAGING_AUTH_DOMAIN = '.ghosterystage.com';

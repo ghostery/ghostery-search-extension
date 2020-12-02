@@ -143,9 +143,6 @@ async function start() {
 
 browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
   if (action === 'getTopSites') {
-    if (browser.ghostery.getPref('app.update.channel') === 'release') {
-      return;
-    }
     return (await browser.topSites.get({
       newtab: true,
       includeFavicon: true,
