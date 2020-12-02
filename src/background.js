@@ -114,7 +114,7 @@ async function start() {
     };
   }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
 
-  browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
+  browser.webRequest.onBeforeSendHeaders.addListener((details) => {
     const { requestHeaders } = details;
 
     requestHeaders.push({
