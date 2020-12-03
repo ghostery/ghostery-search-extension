@@ -12,7 +12,6 @@ document.querySelector('html').classList.add('logged-out');
 
 function injectLoggedInStatus(status) {
   statusContentScript = statusContentScript.then(async () => {
-    console.log("set logged in", status);
     if (status === loggedIn) {
       return;
     }
