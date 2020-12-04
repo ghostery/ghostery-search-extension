@@ -1,5 +1,5 @@
 "use strict";
 
-(async function () {
+(function () {
   document.querySelector('html').classList.add('ghostery-browser');
 })()
