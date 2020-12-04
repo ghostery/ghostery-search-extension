@@ -9,6 +9,7 @@ class AccessToken {
     }
     AccessToken.TOKEN = value;
     tokenPool.generateTokens();
+    injectLoggedInStatus(!!AccessToken.TOKEN);
   }
 
   static get() {
@@ -31,6 +32,7 @@ class AccessToken {
   static destroy() {
     console.warn("ACCESS_TOKEN removed")
     AccessToken.TOKEN = null;
+    injectLoggedInStatus(false);
   }
 
   static async refresh() {
@@ -113,32 +115,6 @@ async function start() {
       requestHeaders,
     };
   }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
-
-  browser.webRequest.onBeforeSendHeaders.addListener((details) => {
-    const { requestHeaders } = details;
-
-    requestHeaders.push({
-      name: "X-Ghostery-Browser",
-      value: "true",
-    });
-
-    requestHeaders.push({
-      name: "X-Ghostery-Login",
-      value: String(!!AccessToken.TOKEN),
-    });
-
-    if (AccessToken.TOKEN) {
-      const scopes = AccessToken.parse().scopes || [];
-      requestHeaders.push({
-        name: "X-Ghostery-Scopes",
-        value: scopes.join(','),
-      });
-    }
-
-    return {
-      requestHeaders,
-    };
-  }, { urls: [`${SERP_BASE_URL}/*`]}, ["blocking", "requestHeaders"]);
 }
 
 browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {

@@ -13,7 +13,8 @@
       "background.js",
       "choice-screen.js",
       "metrics.js",
-      "api.js"
+      "api.js",
+      "status.js"
     ]
   },
   "content_scripts": [{
@@ -21,7 +22,11 @@
       "https://*.ghosterysearch.com/",
       "http://localhost/*"
     ],
-    "js": ["content/top-sites.js", "content/search-bar.js"]
+    "js": [
+      "content/top-sites.js",
+      "content/search-bar.js",
+      "content/is-ghostery-browser.js"
+    ]
   }, {
     "matches": [
       "https://*.ghosterysearch.com/search*",
@@ -38,6 +43,7 @@
     "webRequest",
     "webRequestBlocking",
     "topSites",
+    "tabs",
     "https://www.ghostery.com/*",
     "https://consumerapi.ghostery.com/*",
     "https://www.ghosterystage.com/*",
