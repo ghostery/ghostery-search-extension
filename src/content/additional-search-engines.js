@@ -4,7 +4,9 @@
 
   function cleanup() {
     const $searchEngines = document.querySelector('.search-engines');
-    $searchEngines.innerHTML = '';
+    while ($searchEngines.firstChild) {
+      $searchEngines.removeChild(searchEngines.firstChild);
+    }
   }
 
   async function addSearchEngines() {

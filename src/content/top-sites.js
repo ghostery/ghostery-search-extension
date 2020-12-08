@@ -4,7 +4,9 @@
 
   function cleanup() {
     const $topsites = document.querySelector('.top-sites');
-    $topsites.innerHTML = '';
+    while ($topsites.firstChild) {
+      $topsites.removeChild(topsites.firstChild);
+    }
   }
 
   async function loadTopSites() {
