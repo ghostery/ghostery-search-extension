@@ -20,11 +20,20 @@
   "content_scripts": [{
     "matches": [
       "https://*.ghosterysearch.com/",
-      "http://localhost/*"
+      "https://*.ghosterysearch.com/?*",
+      "http://localhost/",
+      "http://localhost/?*"
     ],
     "js": [
       "content/top-sites.js",
-      "content/search-bar.js",
+      "content/search-bar.js"
+    ]
+  }, {
+    "matches": [
+      "https://*.ghosterysearch.com/*",
+      "http://localhost/*"
+    ],
+    "js": [
       "content/is-ghostery-browser.js"
     ]
   }, {
