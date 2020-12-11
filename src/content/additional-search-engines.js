@@ -20,7 +20,7 @@
     searchEngines.forEach(engine => {
       const $engine = $searchEngineTemplate.content.cloneNode(true);
       $engine.querySelector('.search-engine-name').innerText = engine.name;
-      $engine.addEventListener('click', () => {
+      $engine.querySelector('a').addEventListener('click', () => {
         browser.runtime.sendMessage({
           action: 'search',
           args: [{
