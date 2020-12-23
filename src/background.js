@@ -35,10 +35,18 @@ class AccessToken {
     injectLoggedInStatus(false);
   }
 
-  static async refresh() {
-    await fetch(`${AUTH_BASE_URL}/refresh_token`, {
-      method: 'POST',
-      credentials: 'include',
+  static refresh() {
+    return new Promise((resolve, reject) => {
+      chrome.runtime.sendMessage('firefox@ghostery.com', 'refreshToken', (response) => {
+        console.log('responded')
+        if (!response && chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+        } else if (!response.success){
+          reject(response.error);
+        } else {
+          resolve();
+        }
+       });
     });
   }
 }
