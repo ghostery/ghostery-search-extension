@@ -38,7 +38,6 @@ class AccessToken {
   static refresh() {
     return new Promise((resolve, reject) => {
       chrome.runtime.sendMessage('firefox@ghostery.com', 'refreshToken', (response) => {
-        console.log('responded')
         if (!response && chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
         } else if (!response.success){
