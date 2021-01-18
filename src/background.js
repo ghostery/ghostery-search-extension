@@ -111,7 +111,7 @@ async function start() {
     return {
       requestHeaders,
     };
-  }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
+  }, { urls: [`${SERP_BASE_URL}/search*`, USE_STAGING ? 'https://staging.ghosterysearch.com/search*' : 'https://ghosterysearch.com/search*']}, ["blocking", "requestHeaders"]);
 
   // TODO: this should only run in Ghostery Dawn
   browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
@@ -123,7 +123,7 @@ async function start() {
     return {
       requestHeaders,
     };
-  }, { urls: [`${SERP_BASE_URL}/*`]}, ["blocking", "requestHeaders"]);
+  }, { urls: [`${SERP_BASE_URL}/*`, USE_STAGING ? 'https://staging.ghosterysearch.com/search*' : 'https://ghosterysearch.com/search*']}, ["blocking", "requestHeaders"]);
 }
 
 browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
