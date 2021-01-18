@@ -21,6 +21,8 @@
     "matches": [
       "https://*.ghosterysearch.com/",
       "https://*.ghosterysearch.com/?*",
+      "https://*.glowstery.com/",
+      "https://*.glowstery.com/?*",
       "http://localhost/",
       "http://localhost/?*"
     ],
@@ -31,6 +33,7 @@
   }, {
     "matches": [
       "https://*.ghosterysearch.com/*",
+      "https://*.glowstery.com/*",
       "http://localhost/*"
     ],
     "js": [
@@ -39,12 +42,13 @@
   }, {
     "matches": [
       "https://*.ghosterysearch.com/search*",
+      "https://*.glowstery.com/search*",
       "http://localhost/search*"
     ],
     "js": ["content/additional-search-engines.js"]
   }],
   "manifest_version": 2,
-  "name": "Ghostery Search",
+  "name": "Ghostery Glow",
   "permissions": [
     "search",
     "storage",
@@ -59,22 +63,25 @@
     "https://consumerapi.ghosterystage.com/*",
     "https://ghosterysearch.com/*",
     "https://staging.ghosterysearch.com/*",
+    "https://glowstery.com/*",
+    "https://staging.glowstery.com/*",
     "http://localhost/*"
   ],
   "icons": {
-    "16": "favicon.ico"
+    "48": "icon.svg",
+    "96": "icon.svg"
   },
   "web_accessible_resources": [
-    "favicon.ico"
+    "icon.svg"
   ],
   "chrome_settings_overrides" : {
     "search_provider": {
-      "name": "Ghostery Search",
-      "search_url": "https://ghosterysearch.com/search?q={searchTerms}",
+      "name": "Ghostery Glow",
+      "search_url": "https://glowstery.com/search?q={searchTerms}",
       "keyword": "@ghostery",
-      "favicon_url": "https://ghosterysearch.com/img/favicon-32x32.png",
+      "favicon_url": "https://glowstery.com/img/favicon-32x32.png",
       "is_default": true,
-      "suggest_url": "https://ghosterysearch.com/suggest",
+      "suggest_url": "https://glowstery.com/suggest",
       "suggest_url_get_params": "q={searchTerms}"
     }
   },
