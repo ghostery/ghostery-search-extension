@@ -27,7 +27,7 @@ async function selectSearchEngine(name) {
   });
   if (name === browser.runtime.getManifest()["chrome_settings_overrides"]["search_provider"].name) {
     browser.tabs.update(currentTab.id, {
-      url: "https://ghosterysearch.com/account",
+      url: "https://glowstery.com/account",
     });
   } else {
     await browser.tabs.create({});
