@@ -112,6 +112,18 @@ async function start() {
       requestHeaders,
     };
   }, { urls: [`${SERP_BASE_URL}/search*`]}, ["blocking", "requestHeaders"]);
+
+  // TODO: this should only run in Ghostery Dawn
+  browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
+    const { requestHeaders } = details;
+    requestHeaders.push({
+      name: "SERP-browser",
+      value: "Ghostery Dawn",
+    });
+    return {
+      requestHeaders,
+    };
+  }, { urls: [`${SERP_BASE_URL}/*`]}, ["blocking", "requestHeaders"]);
 }
 
 browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
