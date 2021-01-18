@@ -128,6 +128,9 @@ async function start() {
 
 browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {
   if (action === 'getTopSites') {
+    if (tab.incognito) {
+      return;
+    }
     return (await browser.topSites.get({
       newtab: true,
       includeFavicon: true,
