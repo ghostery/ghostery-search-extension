@@ -7,7 +7,7 @@ let API_BASE_URL = DEBUG ? 'http://localhost:5000' : PROD_BASE_URL;
 let SERP_BASE_URL = DEBUG ? 'http://localhost' : PROD_BASE_URL;
 let AUTH_DOMAIN = PROD_AUTH_DOMAIN;
 let AUTH_BASE_URL = `https://consumerapi${PROD_AUTH_DOMAIN}/api/v2`;
-const USE_STAGING = false;
+let USE_STAGING = false;
 
 const setupEndpoints = (async function() {
   USE_STAGING = (await browser.storage.local.get('USE_STAGING'))['USE_STAGING'];
