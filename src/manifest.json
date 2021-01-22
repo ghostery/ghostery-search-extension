@@ -1,5 +1,5 @@
 {
-  "version": "0.2.2",
+  "version": "0.2.3",
   "browser_specific_settings": {
     "gecko": {
       "id": "search@ghostery.com"
@@ -11,7 +11,6 @@
       "token-pool.js",
       "sjcl.js",
       "background.js",
-      "choice-screen.js",
       "metrics.js",
       "api.js",
       "status.js"
