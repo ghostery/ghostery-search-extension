@@ -11,4 +11,7 @@ browser.runtime.onMessageExternal.addListener(async (message, sender) => {
   if (message === "getMetrics") {
     return getMetrics();
   }
+  if (message.type === "setDefaultSearch") {
+    return browser.ghostery.setDefaultSearchEngine(message.search);
+  }
 });
