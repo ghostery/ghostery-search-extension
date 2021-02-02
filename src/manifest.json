@@ -67,18 +67,17 @@
     "http://localhost/*"
   ],
   "icons": {
-    "48": "icon.svg",
-    "96": "icon.svg"
+    "16": "favicon.ico"
   },
   "web_accessible_resources": [
-    "icon.svg"
+    "favicon.ico"
   ],
   "chrome_settings_overrides" : {
     "search_provider": {
       "name": "Ghostery Glow",
       "search_url": "https://glowstery.com/search?q={searchTerms}",
       "keyword": "@ghostery",
-      "favicon_url": "https://glowstery.com/img/favicon-32x32.png",
+      "favicon_url": "https://glowstery.com/favicon.ico",
       "is_default": true,
       "suggest_url": "https://glowstery.com/suggest",
       "suggest_url_get_params": "q={searchTerms}"
