@@ -30,11 +30,6 @@ global.ghostery = class extends ExtensionCommon.ExtensionAPI {
 
           Services.search.defaultEngine = searchEngine;
         },
-        query(windowId, query) {
-          const window = getWindow(windowId);
-          window.gURLBar.value = query || '';
-          window.gURLBar.focus();
-        },
         isDefaultBrowser() {
           const shell = Components.classes["@mozilla.org/browser/shell-service;1"]
             .getService(Components.interfaces.nsIShellService)

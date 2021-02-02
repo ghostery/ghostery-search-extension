@@ -30,20 +30,6 @@
     }
   },
   {
-    "name": "query",
-    "type": "function",
-    "description": "Focus the UrlBar",
-    "parameters": [{
-      "type": "number",
-      "name": "windowId",
-      "optional": true
-    }, {
-      "type": "string",
-      "name": "query",
-      "optional": true
-    }]
-  },
-  {
     "name": "isDefaultBrowser",
     "type": "function",
     "async": true,
