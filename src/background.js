@@ -111,7 +111,16 @@ async function start() {
     return {
       requestHeaders,
     };
-  }, { urls: [`${SERP_BASE_URL}/search*`, USE_STAGING ? 'https://staging.ghosterysearch.com/search*' : 'https://ghosterysearch.com/search*']}, ["blocking", "requestHeaders"]);
+  }, {
+    urls: [
+      `${SERP_BASE_URL}/search*`,
+      `${SERP_BASE_URL}/images/search*`,
+      `${SERP_BASE_URL}/videos/search*`,
+      USE_STAGING ? 'https://staging.ghosterysearch.com/search*' : 'https://ghosterysearch.com/search*',
+      USE_STAGING ? 'https://staging.ghosterysearch.com/images/search*' : 'https://ghosterysearch.com/images/search*',
+      USE_STAGING ? 'https://staging.ghosterysearch.com/videos/search*' : 'https://ghosterysearch.com/videos/search*',
+    ],
+  }, ["blocking", "requestHeaders"]);
 
   // TODO: this should only run in Ghostery Dawn
   browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
