@@ -90,9 +90,49 @@ const lookForAccessToken = async () => {
   };
 }
 
+function redirectToLastQuery() {
+  let lastQuery;
+
+  browser.webRequest.onBeforeRedirect.addListener((details) => {
+    if (details.redirectUrl.startsWith(`https://signon${AUTH_DOMAIN}/`)) {
+      const originalUrl = new URL(details.url);
+      lastQuery = originalUrl.searchParams.get('q');
+    }
+  }, {
+    urls: [
+      `${SERP_BASE_URL}/search*`,
+      `${SERP_BASE_URL}/images/search*`,
+      `${SERP_BASE_URL}/videos/search*`,
+      USE_STAGING ? 'https://staging.ghosterysearch.com/' : 'https://ghosterysearch.com/search*',
+      USE_STAGING ? 'https://staging.ghosterysearch.com/images/search*' : 'https://ghosterysearch.com/images/search*',
+      USE_STAGING ? 'https://staging.ghosterysearch.com/videos/search*' : 'https://ghosterysearch.com/videos/search*',
+    ],
+  }, []);
+
+  browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
+    const url = new URL(details.url);
+    const searchParams = url.searchParams;
+    if (lastQuery) {;
+      searchParams.set('q', lastQuery);
+      lastQuery = null;
+      url.pathname = 'search/';
+      url.searchParams = searchParams;
+      return {
+        redirectUrl: url.toString(),
+      };
+    }
+  }, {
+    urls: [
+      `${SERP_BASE_URL}/`,
+      USE_STAGING ? 'https://staging.ghosterysearch.com/' : 'https://ghosterysearch.com/',
+    ],
+  }, ['blocking']);
+}
+
 async function start() {
   await setupEndpoints;
   lookForAccessToken();
+  redirectToLastQuery();
 
   browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
     const { requestHeaders } = details;
