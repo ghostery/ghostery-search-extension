@@ -76,7 +76,6 @@
       "name": "Ghostery Glow",
       "search_url": "https://glowstery.com/search?q={searchTerms}",
       "keyword": "@ghostery",
-      "favicon_url": "https://glowstery.com/favicon.ico",
       "is_default": true,
       "suggest_url": "https://glowstery.com/suggest",
       "suggest_url_get_params": "q={searchTerms}"
