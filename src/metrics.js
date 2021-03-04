@@ -1,9 +1,15 @@
 // limit engines we can send to the specific set we're interested in from search choice screen
 const searchEngineMap = {
   "Ghostery Glow": "ghostery",
-  Google: "google",
   Bing: "bing",
-  StartPage: "sp",
+  DuckDuckGo: "ddg",
+  Ecosia: "ecosia",
+  Ekoru: "ekoru",
+  Gibiru: "gibiru",
+  Google: "google",
+  OneSearch: "onesearch",
+  Qwant: "qwant",
+  Startpage: "sp",
   Yahoo: "yahoo",
 };
 
