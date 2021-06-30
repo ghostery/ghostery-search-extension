@@ -1,0 +1,54 @@
+{
+  "version": "0.2.7",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "search@ghostery.com"
+    }
+  },
+  "background": {
+    "scripts": [
+      "config.js",
+      "token-pool.js",
+      "sjcl.js",
+      "background.js",
+      "metrics.js",
+      "api.js",
+      "status.js"
+    ]
+  },
+  "content_scripts": [{
+    "matches": [
+      "https://*.glowstery.com/search*"
+    ],
+    "js": ["content/additional-search-engines.js"]
+  }],
+  "manifest_version": 2,
+  "name": "Ghostery Glow for Firefox",
+  "permissions": [
+    "search",
+    "storage",
+    "cookies",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "https://www.ghostery.com/*",
+    "https://consumerapi.ghostery.com/*",
+    "https://glowstery.com/*"
+  ],
+  "icons": {
+    "16": "favicon.ico"
+  },
+  "web_accessible_resources": [
+    "favicon.ico"
+  ],
+  "chrome_settings_overrides" : {
+    "search_provider": {
+      "name": "Ghostery Glow",
+      "search_url": "https://glowstery.com/search?q={searchTerms}",
+      "keyword": "@ghostery",
+      "is_default": true,
+      "suggest_url": "https://glowstery.com/suggest",
+      "suggest_url_get_params": "q={searchTerms}"
+    }
+  }
+}
