@@ -26,10 +26,14 @@
     "https://glowstery.com/*"
   ],
   "icons": {
-    "16": "favicon.ico"
+    "16": "icon16.png",
+    "48": "icon48.png",
+   "128": "icon128.png"
   },
   "web_accessible_resources": [
-    "favicon.ico"
+    "icon16.png",
+    "icon48.png",
+    "icon128.png"
   ],
   "chrome_settings_overrides" : {
     "search_provider": {
