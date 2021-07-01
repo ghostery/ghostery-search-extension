@@ -6,9 +6,11 @@
   "scripts": {
     "switch-firefox": "cp manifests/firefox.json src/manifest.json",
     "switch-dawn": "cp manifests/dawn.json src/manifest.json",
+    "switch-chrome": "cp manifests/chrome.json src/manifest.json",
     "build": "web-ext build",
     "sign": "web-ext sign --channel unlisted --timeout 360000",
-    "start": "web-ext run --pref extensions.experiments.enabled=true --pref security.sandbox.content.level=2"
+    "start": "web-ext run --pref extensions.experiments.enabled=true --pref security.sandbox.content.level=2",
+    "postinstall": "rm -rf src/libs/; mkdir -p src/libs; cp node_modules/webextension-polyfill/dist/browser-polyfill.js src/libs/browser-polyfill.js"
   },
   "webExt": {
     "sourceDir": "./src/",
@@ -25,6 +27,7 @@
   },
   "homepage": "https://github.com/ghostery/ghostery-search-extension#readme",
   "devDependencies": {
-    "web-ext": "^5.2.0"
+    "web-ext": "^5.2.0",
+    "webextension-polyfill": "^0.8.0"
   }
 }
