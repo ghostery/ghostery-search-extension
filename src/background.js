@@ -37,7 +37,7 @@ class AccessToken {
 
   static refresh() {
     return new Promise((resolve, reject) => {
-      chrome.runtime.sendMessage('firefox@ghostery.com', 'refreshToken', (response) => {
+      chrome.runtime.sendMessage(GBE_ADDON_ID, 'refreshToken', (response) => {
         if (!response && chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
         } else if (!response.success){
@@ -134,9 +134,9 @@ async function start() {
   lookForAccessToken();
   redirectToLastQuery();
 
-  browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
+  browser.webRequest.onBeforeSendHeaders.addListener((details) => {
     const { requestHeaders } = details;
-    const token = await tokenPool.getToken();
+    const token = tokenPool.getToken();
     if (!token) {
       return;
     }
@@ -160,19 +160,15 @@ async function start() {
       USE_STAGING ? 'https://staging.ghosterysearch.com/images/search*' : 'https://ghosterysearch.com/images/search*',
       USE_STAGING ? 'https://staging.ghosterysearch.com/videos/search*' : 'https://ghosterysearch.com/videos/search*',
     ],
-  }, ["blocking", "requestHeaders"]);
+  }, ["requestHeaders", "blocking", ...(IS_CHROME ? ["extraHeaders"] : [])]);
 
-  // TODO: this should only run in Ghostery Dawn
-  browser.webRequest.onBeforeSendHeaders.addListener(async (details) => {
-    const { requestHeaders } = details;
-    requestHeaders.push({
-      name: "SERP-browser",
-      value: "Ghostery Dawn",
-    });
-    return {
-      requestHeaders,
-    };
-  }, { urls: [`${SERP_BASE_URL}/*`, USE_STAGING ? 'https://staging.ghosterysearch.com/search*' : 'https://ghosterysearch.com/search*']}, ["blocking", "requestHeaders"]);
+  ON_START.forEach(cb => {
+    try {
+      cb();
+    } catch (e) {
+      console.error(e);
+    }
+  });
 }
 
 browser.runtime.onMessage.addListener(async ({ action, args }, { tab }) => {

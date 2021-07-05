@@ -1,4 +1,5 @@
 const PUBLIC_EXP = 65537;
+const TOKEN_POLL_SIZE = 10;
 const MIN_TOKENS = 6;
 
 function bnToBase64(bn) {
@@ -151,15 +152,14 @@ class TokenPool {
     this.tokens = [];
   }
 
-  async getToken() {
-    if (this.tokens.length === 0) {
-      await this.generateTokens();
-    } else if (this.tokens.length < MIN_TOKENS) {
+  getToken() {
+    const token = this.tokens.pop();
+    if (this.tokens.length < MIN_TOKENS) {
       this.generateTokens().catch((e) => {
         console.error('Failed to generate tokens in advance', e);
       });
     }
-    return this.tokens.pop();
+    return token;
   }
 
   async getModulus() {
@@ -209,7 +209,7 @@ class TokenPool {
     const blindTokens = [];
     const pretokens = [];
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < TOKEN_POLL_SIZE; i += 1) {
       const { token, blindFactor, blindToken } = await this.makePretoken(mod);
       blindTokens.push(bnToBase64(blindToken));
       pretokens.push({ token, blindFactor });

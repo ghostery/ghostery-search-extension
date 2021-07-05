@@ -9,6 +9,12 @@ let AUTH_DOMAIN = PROD_AUTH_DOMAIN;
 let AUTH_BASE_URL = `https://consumerapi${PROD_AUTH_DOMAIN}/api/v2`;
 let USE_STAGING = false;
 
+const ON_START = [];
+
+const manifest = chrome.runtime.getManifest();
+const IS_CHROME = manifest.name === "Ghostery Glow for Chrome";
+const GBE_ADDON_ID = IS_CHROME ? 'mlomiejdfkolichcflejclcbmpeaniij' : 'firefox@ghostery.com';
+
 const setupEndpoints = (async function() {
   USE_STAGING = (await browser.storage.local.get('USE_STAGING'))['USE_STAGING'];
   if (USE_STAGING) {
