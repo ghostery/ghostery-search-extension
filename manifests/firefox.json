@@ -13,7 +13,6 @@
       "browser-action.js",
       "background.js",
       "metrics.js",
-      "api.js",
       "status.js"
     ]
   },
