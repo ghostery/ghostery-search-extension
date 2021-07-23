@@ -6,11 +6,16 @@
       "config.js",
       "token-pool.js",
       "sjcl.js",
+      "browser-action.js",
       "background.js",
       "metrics.js",
       "api.js",
       "status.js"
     ]
+  },
+  "browser_action": {
+    "default_icon": "icon.svg",
+    "default_title": "Ghostery Glow"
   },
   "manifest_version": 2,
   "name": "Ghostery Glow for Chrome",
