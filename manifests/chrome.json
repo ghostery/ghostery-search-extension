@@ -1,5 +1,5 @@
 {
-  "version": "0.2.7",
+  "version": "1.0.0",
   "background": {
     "scripts": [
       "libs/browser-polyfill.js",
@@ -28,7 +28,7 @@
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
-   "128": "icon128.png"
+    "128": "icon128.png"
   },
   "web_accessible_resources": [
     "icon16.png",
