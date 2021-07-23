@@ -1,4 +1,4 @@
-chrome.browserAction.onClicked.addListener(() => {
+browser.browserAction.onClicked.addListener(() => {
   browser.tabs.create({
     url: "https://glowstery.com",
   });
