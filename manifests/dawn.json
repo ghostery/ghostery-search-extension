@@ -1,5 +1,5 @@
 {
-  "version": "0.2.7",
+  "version": "1.0.0",
   "browser_specific_settings": {
     "gecko": {
       "id": "search@ghostery.com"
@@ -67,15 +67,20 @@
     "http://localhost/*"
   ],
   "icons": {
-    "16": "favicon.ico"
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "web_accessible_resources": [
-    "favicon.ico"
+    "icon16.png",
+    "icon48.png",
+    "icon128.png"
   ],
   "chrome_settings_overrides" : {
     "search_provider": {
       "name": "Ghostery Glow",
       "search_url": "https://glowstery.com/search?q={searchTerms}",
+      "favicon_url":  "https://glowstery.com/favicon.ico",
       "keyword": "@ghostery",
       "is_default": true,
       "suggest_url": "https://glowstery.com/suggest",
