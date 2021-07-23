@@ -10,6 +10,7 @@
       "config.js",
       "token-pool.js",
       "sjcl.js",
+      "platforms/dawn.js",
       "background.js",
       "metrics.js",
       "api.js",
