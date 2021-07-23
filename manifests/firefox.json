@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "browser_specific_settings": {
     "gecko": {
       "id": "search@ghostery.com"
@@ -12,7 +12,6 @@
       "sjcl.js",
       "browser-action.js",
       "background.js",
-      "metrics.js",
       "status.js"
     ]
   },
@@ -34,7 +33,6 @@
     "cookies",
     "webRequest",
     "webRequestBlocking",
-    "tabs",
     "https://www.ghostery.com/*",
     "https://consumerapi.ghostery.com/*",
     "https://glowstery.com/*"

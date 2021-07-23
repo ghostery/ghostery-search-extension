@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "background": {
     "scripts": [
       "libs/browser-polyfill.js",
@@ -7,9 +7,7 @@
       "token-pool.js",
       "sjcl.js",
       "browser-action.js",
-      "background.js",
-      "metrics.js",
-      "status.js"
+      "background.js"
     ]
   },
   "browser_action": {
@@ -24,7 +22,6 @@
     "cookies",
     "webRequest",
     "webRequestBlocking",
-    "tabs",
     "https://www.ghostery.com/*",
     "https://consumerapi.ghostery.com/*",
     "https://glowstery.com/*"
