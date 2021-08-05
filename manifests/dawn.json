@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "browser_specific_settings": {
     "gecko": {
       "id": "search@ghostery.com"
@@ -10,12 +10,17 @@
       "config.js",
       "token-pool.js",
       "sjcl.js",
+      "browser-action.js",
       "platforms/dawn.js",
       "background.js",
       "metrics.js",
       "api.js",
       "status.js"
     ]
+  },
+  "browser_action": {
+    "default_icon": "icon.svg",
+    "default_title": "Ghostery Glow"
   },
   "content_scripts": [{
     "matches": [
