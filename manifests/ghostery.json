@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "browser_specific_settings": {
     "gecko": {
       "id": "search@ghostery.com"
@@ -20,7 +20,7 @@
   },
   "browser_action": {
     "default_icon": "icon.svg",
-    "default_title": "Ghostery Glow"
+    "default_title": "Ghostery Private Search"
   },
   "content_scripts": [{
     "matches": [
@@ -52,7 +52,7 @@
     "js": ["content/additional-search-engines.js"]
   }],
   "manifest_version": 2,
-  "name": "Ghostery Glow",
+  "name": "Ghostery Private Search",
   "permissions": [
     "search",
     "storage",
@@ -83,7 +83,7 @@
   ],
   "chrome_settings_overrides" : {
     "search_provider": {
-      "name": "Ghostery Glow",
+      "name": "Ghostery Private Search",
       "search_url": "https://glowstery.com/search?q={searchTerms}",
       "favicon_url":  "https://glowstery.com/favicon.ico",
       "keyword": "@ghostery",

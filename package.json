@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "switch-firefox": "cp manifests/firefox.json src/manifest.json",
-    "switch-dawn": "cp manifests/dawn.json src/manifest.json",
+    "switch-ghostery": "cp manifests/ghostery.json src/manifest.json",
     "switch-chrome": "cp manifests/chrome.json src/manifest.json",
     "build": "web-ext build",
     "sign": "web-ext sign --channel unlisted --timeout 360000",

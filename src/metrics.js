@@ -1,6 +1,6 @@
 // limit engines we can send to the specific set we're interested in from search choice screen
 const searchEngineMap = {
-  "Ghostery Glow": "ghostery",
+  "Ghostery Private Search": "ghostery",
   Bing: "bing",
   DuckDuckGo: "ddg",
   Ecosia: "ecosia",

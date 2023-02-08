@@ -12,7 +12,7 @@ let USE_STAGING = false;
 const ON_START = [];
 
 const manifest = chrome.runtime.getManifest();
-const IS_CHROME = manifest.name === "Ghostery Glow for Chrome";
+const IS_CHROME = manifest.name === "Ghostery Private Search for Chrome";
 const GBE_ADDON_ID = IS_CHROME ? 'mlomiejdfkolichcflejclcbmpeaniij' : 'firefox@ghostery.com';
 
 const setupEndpoints = (async function() {
