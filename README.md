@@ -1,6 +1,6 @@
-# Ghostery Search Extension
+# Ghostery Private Search Extension
 
-Makes glowstery.com a default search engine.
+Makes ghosterysearch.com a default search engine.
 
 ## Multiple platform support
 

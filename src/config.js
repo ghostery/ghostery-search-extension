@@ -1,6 +1,6 @@
 let DEBUG = false;
-const STAGING_BASE_URL = 'https://staging.glowstery.com';
-const PROD_BASE_URL = 'https://glowstery.com';
+const STAGING_BASE_URL = 'https://staging.ghosterysearch.com';
+const PROD_BASE_URL = 'https://ghosterysearch.com';
 const STAGING_AUTH_DOMAIN = '.ghosterystage.com';
 const PROD_AUTH_DOMAIN = '.ghostery.com';
 let API_BASE_URL = DEBUG ? 'http://localhost:5000' : PROD_BASE_URL;
@@ -25,7 +25,7 @@ const setupEndpoints = (async function() {
     if (!DEBUG) {
       API_BASE_URL = STAGING_BASE_URL;
       SERP_BASE_URL = STAGING_BASE_URL;
-      console.log(`USING_STAGING: Redirecting glowstery.com to staging.glowstery.com`)
+      console.log(`USING_STAGING: Redirecting ghosterysearch.com to staging.ghosterysearch.com`)
       browser.webRequest.onBeforeRequest.addListener(async (details) => {
         return {
           redirectUrl: details.url.replace(PROD_BASE_URL, STAGING_BASE_URL),
