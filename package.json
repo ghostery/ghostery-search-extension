@@ -1,6 +1,6 @@
 {
   "name": "ghostery-search-extension",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "switch-chrome": "cp manifests/chrome.json src/manifest.json",
     "build": "web-ext build",
     "sign": "web-ext sign --channel unlisted --timeout 360000",
-    "start": "web-ext run --pref extensions.experiments.enabled=true --pref security.sandbox.content.level=2",
+    "start.firefox": "web-ext run --pref extensions.experiments.enabled=true --pref security.sandbox.content.level=2",
+    "start.chrome": "web-ext run --target=chromium",
     "postinstall": "rm -rf src/libs/; mkdir -p src/libs; cp node_modules/webextension-polyfill/dist/browser-polyfill.js src/libs/browser-polyfill.js"
   },
   "webExt": {

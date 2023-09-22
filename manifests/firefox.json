@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "browser_specific_settings": {
     "gecko": {
       "id": "search@ghostery.com"
@@ -29,7 +29,6 @@
     "webRequestBlocking",
     "https://www.ghostery.com/*",
     "https://consumerapi.ghostery.com/*",
-    "https://glowstery.com/*",
     "https://ghosterysearch.com/*"
   ],
   "icons": {
