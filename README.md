@@ -13,9 +13,10 @@ Manifests are located in `/manifests` folder. To prepare the build for different
 
 *Important* - remember to copy manifest file on every change you make to it in `/manifests` folder. `/src/manifest.json` is not updating automatically.
 
-## Publishing
+## Publishing builds to github releases
 
- 1. Update version in `src/manifest.json`
- 2. `git add src/manifest.json && git commit -m "v$VERSION"`
- 2. `npm run build`
- 3. `gh release create v$VERSION ./web-ext-artifacts/ghostery_search-$VERSION.zip` (replace `$VERSION` with the manifest version)
+Update `version` in `package.json`
+
+```sh
+npm run release
+```

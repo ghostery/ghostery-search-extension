@@ -1,4 +1,3 @@
-const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 const { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
 
 const COMPLEX_VALUE_RE = /^chrome:\/\/.+\/locale\/.+\.properties/;

@@ -1,16 +1,17 @@
 {
   "name": "ghostery-search-extension",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "switch-firefox": "cp manifests/firefox.json src/manifest.json",
     "switch-ghostery": "cp manifests/ghostery.json src/manifest.json",
     "switch-chrome": "cp manifests/chrome.json src/manifest.json",
-    "build": "web-ext build",
+    "build": "web-ext build --overwrite-dest",
     "sign": "web-ext sign --channel unlisted --timeout 360000",
     "start": "web-ext run --pref extensions.experiments.enabled=true --pref security.sandbox.content.level=2",
-    "postinstall": "rm -rf src/libs/; mkdir -p src/libs; cp node_modules/webextension-polyfill/dist/browser-polyfill.js src/libs/browser-polyfill.js"
+    "postinstall": "rm -rf src/libs/; mkdir -p src/libs; cp node_modules/webextension-polyfill/dist/browser-polyfill.js src/libs/browser-polyfill.js",
+    "release": "node ./scripts/release.js"
   },
   "webExt": {
     "sourceDir": "./src/",
@@ -27,7 +28,9 @@
   },
   "homepage": "https://github.com/ghostery/ghostery-search-extension#readme",
   "devDependencies": {
-    "web-ext": "^5.2.0",
-    "webextension-polyfill": "^0.8.0"
+    "web-ext": "^7.11.0"
+  },
+  "dependencies": {
+    "webextension-polyfill": "^0.10.0"
   }
 }
