@@ -1,47 +1,44 @@
 {
   "version": "1.1.0",
   "background": {
-    "scripts": [
-      "libs/browser-polyfill.js",
-      "config.js",
-      "token-pool.js",
-      "sjcl.js",
-      "browser-action.js",
-      "background.js"
-    ]
+    "service_worker": "index.js",
+    "type": "module"
   },
-  "browser_action": {
-    "default_icon": "icon.svg",
+  "action": {
+    "default_icon": {
+      "48": "./icons/icon48.png",
+      "128": "./icons/icon128.png"
+    },
     "default_title": "Ghostery Private Search"
   },
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Ghostery Private Search for Chrome",
   "permissions": [
-    "search",
-    "storage",
-    "cookies",
-    "webRequest",
-    "webRequestBlocking",
-    "https://www.ghostery.com/*",
-    "https://consumerapi.ghostery.com/*",
-    "https://glowstery.com/*",
-    "https://ghosterysearch.com/*"
+    "tabs"
+  ],
+  "host_permissions": [
   ],
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "16": "./icons/icon16.png",
+    "48": "./icons/icon48.png",
+    "128": "./icons/icon128.png"
   },
   "web_accessible_resources": [
-    "icon16.png",
-    "icon48.png",
-    "icon128.png"
+    {
+      "resources": [
+        "./icons/icon16.png",
+        "./icons/icon48.png",
+        "./icons/icon128.png"
+      ],
+      "all_frames": true,
+      "matches": ["<all_urls>"]
+    }
   ],
-  "chrome_settings_overrides" : {
+  "chrome_settings_overrides": {
     "search_provider": {
       "name": "Ghostery Private Search",
       "search_url": "https://ghosterysearch.com/search?q={searchTerms}",
-      "favicon_url":  "https://ghosterysearch.com/favicon.ico",
+      "favicon_url": "https://ghosterysearch.com/favicon.ico",
       "keyword": "@ghostery",
       "is_default": true,
       "suggest_url": "https://ghosterysearch.com/suggest",

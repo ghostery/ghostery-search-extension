@@ -6,47 +6,39 @@
     }
   },
   "background": {
+    "type": "module",
+    "persistent": false,
     "scripts": [
-      "config.js",
-      "token-pool.js",
-      "sjcl.js",
-      "browser-action.js",
-      "background.js",
-      "status.js"
+      "index.js"
     ]
   },
   "browser_action": {
-    "default_icon": "icon.svg",
+    "default_icon": {
+      "48": "./icons/icon48.png",
+      "128": "./icons/icon128.png"
+    },
     "default_title": "Ghostery Private Search"
   },
   "manifest_version": 2,
   "name": "Ghostery Private Search for Firefox",
   "permissions": [
-    "search",
-    "storage",
-    "cookies",
-    "webRequest",
-    "webRequestBlocking",
-    "https://www.ghostery.com/*",
-    "https://consumerapi.ghostery.com/*",
-    "https://glowstery.com/*",
-    "https://ghosterysearch.com/*"
+    "tabs"
   ],
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "web_accessible_resources": [
-    "icon16.png",
-    "icon48.png",
-    "icon128.png"
+    "icons/icon16.png",
+    "icons/icon48.png",
+    "icons/icon128.png"
   ],
-  "chrome_settings_overrides" : {
+  "chrome_settings_overrides": {
     "search_provider": {
       "name": "Ghostery Private Search",
       "search_url": "https://ghosterysearch.com/search?q={searchTerms}",
-      "favicon_url":  "https://ghosterysearch.com/favicon.ico",
+      "favicon_url": "https://ghosterysearch.com/favicon.ico",
       "keyword": "@ghostery",
       "is_default": true,
       "suggest_url": "https://ghosterysearch.com/suggest",
