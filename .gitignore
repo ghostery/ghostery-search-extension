@@ -1,5 +1,4 @@
 node_modules
 web-ext-artifacts
 src/manifest.json
-src/libs/*
 .DS_Store
